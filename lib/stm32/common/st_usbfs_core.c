@@ -227,16 +227,19 @@ void st_usbfs_poll(usbd_device *dev)
 
 	if (istr & USB_ISTR_CTR) {
 		uint8_t ep = istr & USB_ISTR_EP_ID;
+		bool out = (istr & USB_ISTR_DIR) ? true : false;
 		uint8_t type;
+		uint16_t epreg = *USB_EP_REG(ep);
 
-		if (istr & USB_ISTR_DIR) {
-			/* OUT or SETUP? */
-			if (*USB_EP_REG(ep) & USB_EP_SETUP) {
-				type = USB_TRANSACTION_SETUP;
-			} else {
-				type = USB_TRANSACTION_OUT;
-			}
-		} else {
+		/* If DIR is set in USB_ISTR, we must check if CTR_TX is set in
+		 * the EP reg and if control_state.state is LAST_DATA_IN we
+		 * must deal with the IN transaction first. */
+		if ((ep == 0x00) && out && (epreg & USB_EP_TX_CTR) &&
+			dev->control_state.state == LAST_DATA_IN) {
+			type = USB_TRANSACTION_IN;
+		} else if (out) { /* OUT or SETUP transaction */
+			type = (epreg & USB_EP_SETUP) ? USB_TRANSACTION_SETUP : USB_TRANSACTION_OUT;
+		} else { /* IN transaction */
 			type = USB_TRANSACTION_IN;
 			USB_CLR_EP_TX_CTR(ep);
 		}
