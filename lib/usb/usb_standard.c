@@ -135,6 +135,38 @@ static uint16_t build_config_descriptor(usbd_device *usbd_dev,
 	return total;
 }
 
+static uint16_t build_bos_descriptor(const struct usb_bos_descriptor *bos,
+                                     uint8_t *buf, uint16_t len)
+{
+	uint8_t *tmpbuf = buf;
+	uint16_t count, total = 0, totallen = 0;
+	uint16_t i;
+
+	memcpy(buf, bos, count = MIN(len, bos->bLength));
+	buf += count;
+	len -= count;
+	total += count;
+	totallen += bos->bLength;
+
+	/* For each device capability */
+	for (i = 0; i < bos->bNumDeviceCaps; i++) {
+        /* Copy device capability descriptor. */
+        const struct usb_device_capability_descriptor *cap =
+            bos->capabilities[i];
+        
+        memcpy(buf, cap, count = MIN(len, cap->bLength));
+        buf += count;
+        len -= count;
+        total += count;
+        totallen += cap->bLength;
+	}
+
+	/* Fill in wTotalLength. */
+	*(uint16_t *)(tmpbuf + 2) = totallen;
+
+	return total;
+}
+
 static int usb_descriptor_type(uint16_t wValue)
 {
 	return wValue >> 8;
@@ -163,6 +195,13 @@ static int usb_standard_get_descriptor(usbd_device *usbd_dev,
 		*buf = usbd_dev->ctrl_buf;
 		*len = build_config_descriptor(usbd_dev, descr_idx, *buf, *len);
 		return USBD_REQ_HANDLED;
+    case USB_DT_BOS:
+        if (!usbd_dev->bos) {
+            return USBD_REQ_NOTSUPP;
+        }
+        *buf = usbd_dev->ctrl_buf;
+        *len = build_bos_descriptor(usbd_dev->bos, *buf, *len);
+        return USBD_REQ_HANDLED;
 	case USB_DT_STRING:
 		sd = (struct usb_string_descriptor *)usbd_dev->ctrl_buf;
 
