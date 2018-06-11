@@ -36,6 +36,8 @@
 #       include <libopencm3/stm32/l0/pwr.h>
 #elif defined(STM32L4)
 #       include <libopencm3/stm32/l4/pwr.h>
+#elif defined(GD32F150)
+#       include <libopencm3/stm32/f150/pwr.h>
 #else
 #       error "stm32 family not defined."
 #endif

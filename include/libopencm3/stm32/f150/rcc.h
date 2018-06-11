@@ -345,16 +345,16 @@
 @ingroup STM32F1xx_rcc_defines
 
 @{*/
-#define RCC_AHBENR_ETHMACENRX			(1 << 16)
-#define RCC_AHBENR_ETHMACENTX			(1 << 15)
-#define RCC_AHBENR_ETHMACEN			(1 << 14)
-#define RCC_AHBENR_OTGFSEN			(1 << 12)
-#define RCC_AHBENR_SDIOEN			(1 << 10)
-#define RCC_AHBENR_FSMCEN			(1 << 8)
+#define RCC_APB2ENR_IOPFEN			(1 << 22)
+#define RCC_APB2ENR_IOPDEN			(1 << 20)
+#define RCC_APB2ENR_IOPCEN			(1 << 19)
+#define RCC_APB2ENR_IOPBEN			(1 << 18)
+#define RCC_APB2ENR_IOPAEN			(1 << 17)
+
 #define RCC_AHBENR_CRCEN			(1 << 6)
-#define RCC_AHBENR_FLITFEN			(1 << 4)
+
 #define RCC_AHBENR_SRAMEN			(1 << 2)
-#define RCC_AHBENR_DMA2EN			(1 << 1)
+
 #define RCC_AHBENR_DMA1EN			(1 << 0)
 /**@}*/
 
@@ -374,13 +374,6 @@
 #define RCC_APB2ENR_TIM1EN			(1 << 11)
 #define RCC_APB2ENR_ADC2EN			(1 << 10)
 #define RCC_APB2ENR_ADC1EN			(1 << 9)
-#define RCC_APB2ENR_IOPGEN			(1 << 8)  /* (XX) */
-#define RCC_APB2ENR_IOPFEN			(1 << 7)  /* (XX) */
-#define RCC_APB2ENR_IOPEEN			(1 << 6)
-#define RCC_APB2ENR_IOPDEN			(1 << 5)
-#define RCC_APB2ENR_IOPCEN			(1 << 4)
-#define RCC_APB2ENR_IOPBEN			(1 << 3)
-#define RCC_APB2ENR_IOPAEN			(1 << 2)
 #define RCC_APB2ENR_AFIOEN			(1 << 0)
 /**@}*/
 
@@ -566,13 +559,11 @@ enum rcc_periph_clken {
 
 	/* APB2 peripherals */
 	RCC_AFIO	= _REG_BIT(0x18, 0),/*VNC*/
-	RCC_GPIOA	= _REG_BIT(0x18, 2),/*VNC*/
-	RCC_GPIOB	= _REG_BIT(0x18, 3),/*VNC*/
-	RCC_GPIOC	= _REG_BIT(0x18, 4),/*VNC*/
-	RCC_GPIOD	= _REG_BIT(0x18, 5),/*VNC*/
-	RCC_GPIOE	= _REG_BIT(0x18, 6),/*VNC*/
-	RCC_GPIOF	= _REG_BIT(0x18, 7),/*VN-*/
-	RCC_GPIOG	= _REG_BIT(0x18, 8),/*VN-*/
+	RCC_GPIOA	= _REG_BIT(0x14, 17),/*VNC*/
+	RCC_GPIOB	= _REG_BIT(0x14, 18),/*VNC*/
+	RCC_GPIOC	= _REG_BIT(0x14, 19),/*VNC*/
+	RCC_GPIOD	= _REG_BIT(0x14, 20),/*VNC*/
+	RCC_GPIOF	= _REG_BIT(0x14, 22),/*VN-*/
 	RCC_ADC1	= _REG_BIT(0x18, 9),/*VNC*/
 	RCC_ADC2	= _REG_BIT(0x18, 10),/*-NC*/
 	RCC_TIM1	= _REG_BIT(0x18, 11),/*VNC*/

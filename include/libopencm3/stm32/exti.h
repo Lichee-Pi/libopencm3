@@ -36,6 +36,8 @@
 #       include <libopencm3/stm32/l0/exti.h>
 #elif defined(STM32L1)
 #       include <libopencm3/stm32/l1/exti.h>
+#elif defined(GD32F150)
+#       include <libopencm3/stm32/f150/exti.h>
 #else
 #       error "stm32 family not defined."
 #endif

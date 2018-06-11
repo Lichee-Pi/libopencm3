@@ -522,28 +522,48 @@ LGPL License Terms @ref lgpl_license
 
 /* --- GPIO registers ------------------------------------------------------ */
 
-/* Port configuration register low (GPIOx_CRL) */
-#define GPIO_CRL(port)			MMIO32((port) + 0x00)
-#define GPIOA_CRL			GPIO_CRL(GPIOA)
-#define GPIOB_CRL			GPIO_CRL(GPIOB)
-#define GPIOC_CRL			GPIO_CRL(GPIOC)
-#define GPIOD_CRL			GPIO_CRL(GPIOD)
-#define GPIOE_CRL			GPIO_CRL(GPIOE)
-#define GPIOF_CRL			GPIO_CRL(GPIOF)
-#define GPIOG_CRL			GPIO_CRL(GPIOG)
+/* Port configuration register (GPIOx_CTL) */
+#define GPIO_CTL(port)			MMIO32((port) + 0x00)
+#define GPIOA_CTL			GPIO_CTL(GPIOA)
+#define GPIOB_CTL			GPIO_CTL(GPIOB)
+#define GPIOC_CTL			GPIO_CTL(GPIOC)
+#define GPIOD_CTL			GPIO_CTL(GPIOD)
+#define GPIOE_CTL			GPIO_CTL(GPIOE)
+#define GPIOF_CTL			GPIO_CTL(GPIOF)
+#define GPIOG_CTL			GPIO_CTL(GPIOG)
 
-/* Port configuration register low (GPIOx_CRH) */
-#define GPIO_CRH(port)			MMIO32((port) + 0x04)
-#define GPIOA_CRH			GPIO_CRH(GPIOA)
-#define GPIOB_CRH			GPIO_CRH(GPIOB)
-#define GPIOC_CRH			GPIO_CRH(GPIOC)
-#define GPIOD_CRH			GPIO_CRH(GPIOD)
-#define GPIOE_CRH			GPIO_CRH(GPIOE)
-#define GPIOF_CRH			GPIO_CRH(GPIOF)
-#define GPIOG_CRH			GPIO_CRH(GPIOG)
+/* Port output mode register (GPIOx_OMODE) */
+#define GPIO_OMODE(port)		MMIO32((port) + 0x04)
+#define GPIOA_OMODE			GPIO_OMODE(GPIOA)
+#define GPIOB_OMODE			GPIO_OMODE(GPIOB)
+#define GPIOC_OMODE			GPIO_OMODE(GPIOC)
+#define GPIOD_OMODE			GPIO_OMODE(GPIOD)
+#define GPIOE_OMODE			GPIO_OMODE(GPIOE)
+#define GPIOF_OMODE			GPIO_OMODE(GPIOF)
+#define GPIOG_OMODE			GPIO_OMODE(GPIOG)
+
+/* Port output speed register (GPIOx_OSPD) */
+#define GPIO_OSPD(port)			MMIO32((port) + 0x08)
+#define GPIOA_OSPD			GPIO_OSPD(GPIOA)
+#define GPIOB_OSPD			GPIO_OSPD(GPIOB)
+#define GPIOC_OSPD			GPIO_OSPD(GPIOC)
+#define GPIOD_OSPD			GPIO_OSPD(GPIOD)
+#define GPIOE_OSPD			GPIO_OSPD(GPIOE)
+#define GPIOF_OSPD			GPIO_OSPD(GPIOF)
+#define GPIOG_OSPD			GPIO_OSPD(GPIOG)
+
+/* Port pull up-down register (GPIOx_PUD) */
+#define GPIO_PUD(port)			MMIO32((port) + 0x0c)
+#define GPIOA_PUD			GPIO_PUD(GPIOA)
+#define GPIOB_PUD			GPIO_PUD(GPIOB)
+#define GPIOC_PUD			GPIO_PUD(GPIOC)
+#define GPIOD_PUD			GPIO_PUD(GPIOD)
+#define GPIOE_PUD			GPIO_PUD(GPIOE)
+#define GPIOF_PUD			GPIO_PUD(GPIOF)
+#define GPIOG_PUD			GPIO_PUD(GPIOG)
 
 /* Port input data register (GPIOx_IDR) */
-#define GPIO_IDR(port)			MMIO32((port) + 0x08)
+#define GPIO_IDR(port)			MMIO32((port) + 0x10)
 #define GPIOA_IDR			GPIO_IDR(GPIOA)
 #define GPIOB_IDR			GPIO_IDR(GPIOB)
 #define GPIOC_IDR			GPIO_IDR(GPIOC)
@@ -553,7 +573,7 @@ LGPL License Terms @ref lgpl_license
 #define GPIOG_IDR			GPIO_IDR(GPIOG)
 
 /* Port output data register (GPIOx_ODR) */
-#define GPIO_ODR(port)			MMIO32((port) + 0x0c)
+#define GPIO_ODR(port)			MMIO32((port) + 0x14)
 #define GPIOA_ODR			GPIO_ODR(GPIOA)
 #define GPIOB_ODR			GPIO_ODR(GPIOB)
 #define GPIOC_ODR			GPIO_ODR(GPIOC)
@@ -563,7 +583,7 @@ LGPL License Terms @ref lgpl_license
 #define GPIOG_ODR			GPIO_ODR(GPIOG)
 
 /* Port bit set/reset register (GPIOx_BSRR) */
-#define GPIO_BSRR(port)			MMIO32((port) + 0x10)
+#define GPIO_BSRR(port)			MMIO32((port) + 0x18)
 #define GPIOA_BSRR			GPIO_BSRR(GPIOA)
 #define GPIOB_BSRR			GPIO_BSRR(GPIOB)
 #define GPIOC_BSRR			GPIO_BSRR(GPIOC)
@@ -592,7 +612,7 @@ LGPL License Terms @ref lgpl_license
 #define GPIOF_LCKR			GPIO_LCKR(GPIOF)
 #define GPIOG_LCKR			GPIO_LCKR(GPIOG)
 
-/* --- GPIO_CRL/GPIO_CRH values -------------------------------------------- */
+/* --- GPIO_CTL/GPIO_OMODE values -------------------------------------------- */
 
 /** @defgroup gpio_cnf GPIO Pin Configuration
 @ingroup gpio_defines

@@ -32,6 +32,8 @@
 #       include <libopencm3/stm32/f4/spi.h>
 #elif defined(STM32L1)
 #       include <libopencm3/stm32/l1/spi.h>
+#elif defined(GD32F150)
+#       include <libopencm3/stm32/f150/spi.h>
 #else
 #       error "stm32 family not defined."
 #endif

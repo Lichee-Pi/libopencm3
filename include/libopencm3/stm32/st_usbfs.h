@@ -33,6 +33,8 @@
 #       include <libopencm3/stm32/l0/st_usbfs.h>
 #elif defined(STM32L1)
 #       include <libopencm3/stm32/l1/st_usbfs.h>
+#elif defined(GD32F150)
+#       include <libopencm3/stm32/f150/st_usbfs.h>
 #else
 #       error "STM32 family not defined or not supported."
 #endif
