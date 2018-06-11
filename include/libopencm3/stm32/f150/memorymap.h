@@ -57,7 +57,7 @@
 #define BX_CAN1_BASE			(PERIPH_BASE_APB1 + 0x6400)
 #define BX_CAN2_BASE			(PERIPH_BASE_APB1 + 0x6800)
 
-#define BACKUP_REGS_BASE		(PERIPH_BASE_APB1 + 0x6c00) /* Where ? */
+#define BACKUP_REGS_BASE		(RTC_BASE + 0x50) 
 #define POWER_CONTROL_BASE		(PERIPH_BASE_APB1 + 0x7000)
 #define DAC_BASE			(PERIPH_BASE_APB1 + 0x7400)
 #define CEC_BASE			(PERIPH_BASE_APB1 + 0x7800)
@@ -100,7 +100,7 @@
 
 /* Device Electronic Signature */
 #define DESIG_FLASH_SIZE_BASE		(INFO_BASE + 0x7e0)
-#define DESIG_UNIQUE_ID_BASE		(INFO_BASE + 0x7e8)
+#define DESIG_UNIQUE_ID_BASE		(INFO_BASE + 0x7ac)
 /* Ignore the "reserved for future use" half of the first word */
 #define DESIG_UNIQUE_ID0		MMIO32(DESIG_UNIQUE_ID_BASE)
 #define DESIG_UNIQUE_ID1		MMIO32(DESIG_UNIQUE_ID_BASE + 4)
